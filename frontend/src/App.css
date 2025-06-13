@@ -1,0 +1,43 @@
+/* === Global Styles & Fonts === */
+@import url('https://fonts.googleapis.com/css2?family=Krona+One&family=Poppins:wght@400;500;600;700&display=swap');
+
+:root {
+  --font-heading-main: 'Krona One', sans-serif;
+  --font-body: 'Poppins', sans-serif;
+  --color-text-light: #FFFFFF;
+  --color-background: #0F001F;
+  --color-border: rgba(174, 174, 174, 0.4);
+}
+
+body {
+  margin: 0;
+  background-color: var(--color-background);
+  color: var(--color-text-light);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.page-container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 40px;
+  padding-top: 73px;
+}
+
+.app-content {
+  position: relative;
+  z-index: 1;
+}
+
+/* === Responsive Adjustments === */
+@media (max-width: 768px) {
+  .page-container {
+    padding: 0 20px; /* Reduce side padding on smaller screens */
+    padding-top: 73px;
+  }
+}

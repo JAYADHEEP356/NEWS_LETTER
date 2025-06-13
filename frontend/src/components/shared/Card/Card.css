@@ -1,0 +1,95 @@
+.card-link-wrapper {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  transition: transform 0.3s ease;
+  width: 100%;
+}
+
+.card-link-wrapper:hover {
+  transform: scale(1.03);
+}
+
+.reusable-card {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+}
+
+.reusable-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.card-text-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 20px;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.8) 100%);
+  z-index: 2;
+}
+
+.reusable-card .card-title {
+  font-family: var(--font-body);
+  font-size: 20px;
+  font-weight: 500;
+  margin: 0;
+  color: var(--color-text-light);
+}
+
+.card-hover-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0.65) 100%);
+  display: flex;
+  align-items: flex-end;
+  padding: 20px;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  z-index: 1;
+}
+
+.reusable-card:hover .card-hover-overlay {
+  opacity: 1;
+}
+
+.publish-date {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 400;
+  color: #B0B0B0;
+}
+
+.card-description {
+  padding-top: 15px;
+}
+
+.card-description p {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight: 400;
+  width: 100%;
+}
+
+.card-link-wrapper:hover .card-description p {
+  text-decoration: underline;
+}
+
+/* === Responsive Adjustments === */
+@media (max-width: 768px) {
+  .card-description p {
+    font-size: 14px; /* Make description text slightly smaller on mobile */
+  }
+  .reusable-card .card-title {
+    font-size: 18px; /* Make card titles slightly smaller */
+  }
+}

@@ -1,0 +1,78 @@
+/* --- Base & Mobile Styles (Default: ≤ 767px) --- */
+.f-section {
+  margin-bottom: 80px;
+
+}
+
+.f-image-container {
+    /* margin-top: 0px; */
+  /* padding-top: px; */
+  position: relative;
+  width: 100%;
+}
+
+/* This rule makes the image fluid while maintaining its widescreen shape */
+.f-image-container .reusable-card {
+    margin-top: 0px;
+  padding-top: 0px;
+  width: 100%;
+  aspect-ratio: 1436 / 958; /* Based on the original dimensions */
+}
+
+/* Mobile-first styles for the text overlay */
+.f-title-overlay {
+  position: absolute;
+  top: 50px;    /* Positioned for mobile */
+  left: 20px;
+  z-index: 2;
+  margin: 0;
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 48px;  /* Mobile-friendly font size */
+  color: #FFFFFF;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+/*
+========================================
+--- Tablet View (768px and up) ---
+========================================
+*/
+@media (min-width: 768px) {
+  .f-section {
+    margin-bottom: 100px;
+  }
+  
+  .f-title-overlay {
+    font-size: 64px;
+    top: 100px;
+    left: 40px;
+  }
+}
+
+/*
+========================================
+--- Mid-size Device View (992px and up) ---
+========================================
+*/
+@media (min-width: 992px) {
+  .f-title-overlay {
+    font-size: 80px;
+    top: 150px;
+    left: 50px;
+  }
+}
+
+/*
+========================================
+--- Desktop View (1200px and up) ---
+========================================
+*/
+@media (min-width: 1200px) {
+  .f-title-overlay {
+    font-size: 102px; /* Full desktop font size */
+    top: 200px;
+    left: 64px;
+  }
+}
