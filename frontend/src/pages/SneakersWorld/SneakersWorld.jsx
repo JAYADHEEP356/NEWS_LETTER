@@ -9,7 +9,7 @@ import orangeSneakerImg from '../../assets/orange sneaker.jpg';
 
 const SneakersWorld = () => {
   const smallSneakerItems = [
-    { id: 1, imageUrl: greenSneakerImg, description: "Discover why this green variant is taking over the streets this fall.", publishDate: "Oct 26, 2023", articleUrl: "/article/green-sneaker-trend" },
+    { id: 1, imageUrl: greenSneakerImg, description: "Discover why this green variant is taking over the streets this fall.", publishDate: "Oct 26, 2023", articleUrl: "/article/green--sneaker-trend" },
     { id: 2, imageUrl: orangeSneakerImg, description: "The vibrant orange colorway that's perfect for a summer look.", publishDate: "Oct 25, 2023", articleUrl: "/article/orange-sneaker-style" },
     { id: 3, imageUrl: greenSneakerImg, description: "Another look at the versatile green sneaker.", publishDate: "Oct 25, 2023", articleUrl: "/article/puma-speed-cat-green" },
     { id: 4, imageUrl: orangeSneakerImg, description: "Styling the essential orange sneaker.", publishDate: "Oct 25, 2023", articleUrl: "/article/orange-sneaker-style-2" },
