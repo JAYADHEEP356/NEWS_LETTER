@@ -66,7 +66,7 @@ const articleData = {
   description: 'Discover how embracing simplicity, clean lines, and a neutral palette can redefine your style and create a timeless, sophisticated wardrobe.',
   // --- USE THE IMPORTED VARIABLE ---
   imageUrl: heroArticleImage, 
-  bodyContent: `<p>...</p>`, // Content from your code
+  bodyContent: `<p>Minimalism in fashion is more than just an aesthetic; it's a philosophy. It champions the idea of 'less is more', focusing on quality over quantity and functionality over fleeting trends. At its core, it involves curating a wardrobe of high-quality, versatile pieces that can be mixed and matched effortlessly.</p><h2>The Core Principles</h2><p>The first step towards a minimalist wardrobe is a significant declutter. This means letting go of items that no longer serve you, don't fit well, or don't align with the style you aspire to. The goal is to create a collection of clothes that you genuinely love and feel confident wearing.</p><blockquote>"The secret of all victory lies in the organization of the non-obvious."</blockquote><p>Once you have a streamlined collection, the focus shifts to mindful consumption. Instead of impulse buys, every new addition should be a deliberate choice—a piece that complements your existing wardrobe and is built to last. This not only elevates your personal style but also promotes sustainability by reducing waste. For more inspiration, check out this <a href="#">guide to sustainable fabrics</a>.</p>`, // Content from your code
 };
 
 const relatedArticlesData = [
