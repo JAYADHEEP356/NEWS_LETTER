@@ -6,9 +6,7 @@ import Background from './components/Background/Background';
 import Navbar from './components/Navbar/Navbar'; // Assuming you have a Navbar
 import Footer from './components/Footer/Footer';   // Assuming you have a Footer
 
-// The new page component we just built
-import NewsletterPage from './components/NewsletterPage/NewsletterPage';
-
+import NewsletterPage from './pages/NewsletterPage/NewsletterPage';
 function App() {
   return (
     <>

@@ -1,7 +1,6 @@
 import React from 'react';
 import './SneakersWorld.css';
-import Card from '../shared/Card/Card.jsx';
-
+import Card from '../../components/shared/Card/Card.jsx';
 const SneakersWorld = () => {
   const smallSneakerItems = [
     { id: 1, imageUrl: "/src/assets/green sneaker.jpg", description: "Discover why this green variant is taking over the streets this fall.", publishDate: "Oct 26, 2023", articleUrl: "/article/green-sneaker-trend" },

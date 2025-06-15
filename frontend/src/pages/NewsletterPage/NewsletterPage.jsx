@@ -4,9 +4,8 @@ import NewsletterHeader from '../NewsletterHeader/NewsletterHeader';
 import SustainableFashion from '../SustainableFashion/SustainableFashion';
 import FashionSection from '../FashionSection/FashionSection';
 import LuxuryFashion from '../LuxuryFashion/LuxuryFashion';
-import FastFashion from '../FastFashion/FastFashion'; // You would create and import these
-import SneakersWorld from '../SneakersWorld/SneakersWorld'; // following the same pattern
-
+import FastFashion from '../FastFashion/FastFashion';
+import SneakersWorld from '../SneakersWorld/SneakersWorld';
 const NewsletterPage = () => {
   return (
     <div className="page-container">

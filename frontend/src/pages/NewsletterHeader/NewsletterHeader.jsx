@@ -1,7 +1,6 @@
 import React from 'react';
 import './NewsletterHeader.css';
-import Card from '../shared/Card/Card'; // Reusing our shared card component
-
+import Card from '../../components/shared/Card/Card.jsx';
 const NewsletterHeader = () => {
   return (
     

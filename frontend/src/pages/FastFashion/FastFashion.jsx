@@ -1,7 +1,6 @@
 import React from 'react';
 import './FastFashion.css';
-import Card from '../shared/Card/Card.jsx'; 
-
+import Card from '../../components/shared/Card/Card.jsx';
 const FastFashion = () => {
   // Data array is from your last version, it is correct.
   const fastFashionItems = [

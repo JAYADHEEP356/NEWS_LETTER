@@ -20,8 +20,7 @@
 
 import React from 'react';
 import './FashionSection.css';
-import Card from '../shared/Card/Card.jsx'; // Make sure path is correct
-
+import Card from '../../components/shared/Card/Card.jsx';
 const FashionSection = () => {
   return (
     <section className="f-section">

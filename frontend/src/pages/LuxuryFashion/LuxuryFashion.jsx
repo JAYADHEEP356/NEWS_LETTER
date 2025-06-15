@@ -1,7 +1,6 @@
 import React from 'react';
 import './LuxuryFashion.css';
-import Card from '../shared/Card/Card.jsx';
-
+import Card from '../../components/shared/Card/Card.jsx';
 const LuxuryFashion = () => {
   return (
     <section className="lf-section">

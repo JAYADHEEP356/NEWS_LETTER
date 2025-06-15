@@ -80,8 +80,7 @@
 
 import React from 'react';
 import './SustainableFashion.css';
-import Card from '../shared/Card/Card.jsx'; 
-
+import Card from '../../components/shared/Card/Card.jsx';
 const SustainableFashion = () => {
   return (
     <section className="sf-section">
