@@ -52,8 +52,7 @@ import { useParams } from 'react-router-dom';
 import './ArticlePage.css';
 
 // --- IMAGE IMPORT ADDED ---
-import heroArticleImage from '../../assets/your-article-hero-image.jpg'; // <-- IMPORTANT: Change this to your actual hero image file name
-
+import heroArticleImage from '../../assets/sneaker1.jpg';
 // Import all the components
 import ArticleSimpleHeader from './ArticleSimpleHeader/ArticleSimpleHeader';
 import ArticleHero from './ArticleHero/ArticleHero';
