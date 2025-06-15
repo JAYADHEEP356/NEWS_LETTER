@@ -1,5 +1,5 @@
 import React from 'react';
-import landingPageBg from '../../assets/landing-page-bg.png';
+import landingPageBg from '../../assets/body-bg.png';
 import './Background.css';
 
 const Background = ({ children }) => {

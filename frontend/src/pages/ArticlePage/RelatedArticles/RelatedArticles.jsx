@@ -1,5 +1,6 @@
 import React from 'react';
 import './RelatedArticles.css';
+// Import the shared Card component from its correct location
 import Card from '../../../components/shared/Card/Card.jsx';
 
 const RelatedArticles = ({ articles }) => {

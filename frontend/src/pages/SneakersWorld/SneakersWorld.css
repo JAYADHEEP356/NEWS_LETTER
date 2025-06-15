@@ -1,18 +1,16 @@
-
+/* --- Base & Mobile Styles --- */
 .sw-section {
   margin-bottom: 80px;
 }
 .sw-title-container {
   margin-bottom: 40px;
 }
-
 .sw-title-line1, .sw-title-line2 {
   font-family: var(--font-body);
   font-weight: 500;
   line-height: 0.1;
   text-transform: uppercase;
 }
-
 .sw-title-line1 { font-size: 44px; }
 .sw-title-line2 { font-size: 60px; }
 
@@ -28,81 +26,59 @@
   max-width: 400px;
 }
 
-.sw-large-card .reusable-card { aspect-ratio: 564 / 699; }
-.sw-grid-container .sw-small-card-1 .reusable-card,
-.sw-grid-container .sw-small-card-2 .reusable-card,
-.sw-grid-container .sw-small-card-3 .reusable-card,
-.sw-grid-container .sw-small-card-4 .reusable-card {
+/* --- FIX: Target .card-image-container --- */
+.sw-large-card .card-image-container { aspect-ratio: 564 / 699; }
+.sw-small-card-1 .card-image-container,
+.sw-small-card-2 .card-image-container,
+.sw-small-card-3 .card-image-container,
+.sw-small-card-4 .card-image-container {
   aspect-ratio: 1 / 1;
 }
 
-/*
-=====================================================
---- Tablet View (768px – 1023px) ---
-Layout: One large card on top, 2x2 grid of small cards below.
-=====================================================
-*/
+/* --- Tablet View (768px – 1023px) --- */
 @media (min-width: 768px) {
   .sw-title-line1 { font-size: 54px; }
   .sw-title-line2 { font-size: 72px; }
-
   .sw-grid-container {
     display: grid;
-    /* --- THIS IS THE CORRECTED LOGIC --- */
-    grid-template-columns: 1fr 1fr; /* Two equal columns for the small cards */
+    grid-template-columns: 1fr 1fr;
     grid-template-areas:
-      "large  large"   /* The large card spans both columns */
+      "large  large"
       "small1 small2"
       "small3 small4";
     gap: 30px;
   }
-
-  /* Assign each card to its named grid area */
   .sw-large-card  { grid-area: large; }
   .sw-small-card-1 { grid-area: small1; }
   .sw-small-card-2 { grid-area: small2; }
   .sw-small-card-3 { grid-area: small3; }
   .sw-small-card-4 { grid-area: small4; }
-
   .sw-card-wrapper {
     max-width: none;
   }
 }
 
-/*
-=====================================================
---- Mid-size Devices (1024px – 1199px) ---
-Layout: Large on left, 2 small stacked on right, 2 small below.
-=====================================================
-*/
+/* --- Mid-size Devices (1024px – 1199px) --- */
 @media (min-width: 1024px) and (max-width: 1199px) {
   .sw-grid-container {
     grid-template-columns: 1.5fr 1fr; 
     grid-template-areas:
       "large small1"
-      "small small2"
+      "large small2"
       "small3 small4";
   }
-
-  /* The large card needs to be told to span two rows in this layout */
   .sw-large-card {
     grid-row: span 2;
   }
 }
 
-/*
-=====================================================
---- Desktop View (≥ 1200px) ---
-Layout: Large on left, 2x2 grid on right.
-=====================================================
-*/
+/* --- Desktop View (≥ 1200px) --- */
 @media (min-width: 1200px) {
   .sw-section {
     margin-bottom: 120px;
   }
   .sw-title-line1 { font-size: 64px; }
   .sw-title-line2 { font-size: 82px; }
-  
   .sw-grid-container {
     grid-template-columns: 564px 1fr 1fr;
     grid-template-areas:

@@ -1,0 +1,44 @@
+.article-hero-container {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr; /* Give slightly more space to the text */
+  gap: 60px; /* Increased gap */
+  margin-bottom: 80px;
+  align-items: center;
+}
+.hero-image-wrapper img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 600 / 800;
+  object-fit: cover;
+  border-radius: 8px;
+}
+.hero-text-wrapper {
+  padding-bottom: 40px; /* Aligns text better with the tall image */
+}
+.hero-headline {
+  font-family: 'Poppins', sans-serif;
+  /* --- FIX: REDUCED FONT SIZE --- */
+  font-size: 44px; 
+  font-weight: 700;
+  line-height: 1.25;
+  margin: 0 0 24px 0;
+}
+.hero-description {
+  font-family: 'Poppins', sans-serif;
+  font-size: 18px;
+  line-height: 1.7;
+  color: #c0c0c0;
+  margin: 0;
+  max-width: 600px; /* Keeps the description from getting too wide */
+}
+
+/* Responsive adjustments for the hero section */
+@media (max-width: 992px) {
+  .article-hero-container {
+    grid-template-columns: 1fr; /* Stack on tablet and smaller */
+    gap: 40px;
+  }
+  .hero-headline {
+    font-size: 36px;
+  }
+}

@@ -1,4 +1,4 @@
-/* --- Base & Mobile Styles (Default: ≤ 767px) --- */
+/* --- Base & Mobile Styles --- */
 .lf-section {
   margin-bottom: 80px;
 }
@@ -26,15 +26,12 @@
   max-width: 400px;
 }
 
-.lf-grid-container .reusable-card {
+/* On mobile, all cards are square */
+.lf-grid-container .card-image-container {
   aspect-ratio: 1 / 1;
 }
 
-/*
-=====================================================
---- Tablet View & Up (≥ 768px) ---
-=====================================================
-*/
+/* --- Tablet View & Up (≥ 768px) --- */
 @media (min-width: 768px) {
   .lf-title-line1 { font-size: 54px; }
   .lf-title-line2 { font-size: 72px; }
@@ -46,14 +43,14 @@
     justify-items: center;
   }
 
-  .lf-card-large .reusable-card,
-  .lf-card-tall .reusable-card {
+  /* --- FIX: Target .card-image-container --- */
+  .lf-card-large .card-image-container,
+  .lf-card-tall .card-image-container {
     aspect-ratio: 679 / 453;
   }
-
-  .lf-card-1 .reusable-card,
-  .lf-card-2 .reusable-card,
-  .lf-card-3 .reusable-card {
+  .lf-card-1 .card-image-container,
+  .lf-card-2 .card-image-container,
+  .lf-card-3 .card-image-container {
     aspect-ratio: 1 / 1;
   }
 
@@ -68,22 +65,16 @@
   .lf-card-large { grid-area: large; }
   .lf-card-tall { grid-area: tall; }
 
-  /* --- THE FIX IS HERE --- */
   .lf-card-3 {
     grid-area: card3;
-    max-width: 390px; /* Sets a maximum width for Card 3 on tablets */
+    max-width: 390px;
   }
-  
   .lf-card-wrapper {
     max-width: none;
   }
 }
 
-/*
-=====================================================
---- Medium & Desktop View (≥ 1024px) ---
-=====================================================
-*/
+/* --- Medium & Desktop View (≥ 1024px) --- */
 @media (min-width: 1024px) {
   .lf-grid-container {
     grid-template-columns: repeat(6, 1fr);
@@ -92,18 +83,12 @@
       "large large large tall  tall  tall";
     align-items: end;
   }
-  
-  /* Reset the max-width for desktop so it can fill its grid cell */
   .lf-card-3 {
     max-width: none;
   }
 }
 
-/*
-=====================================================
---- Large Desktop View (≥ 1200px) ---
-=====================================================
-*/
+/* --- Large Desktop View (≥ 1200px) --- */
 @media (min-width: 1200px) {
   .lf-section {
     margin-bottom: 120px;

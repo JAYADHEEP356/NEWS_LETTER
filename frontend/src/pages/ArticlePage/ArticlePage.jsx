@@ -12,7 +12,7 @@ import RelatedArticles from './RelatedArticles/RelatedArticles';
 // --- Static Content (as specified in the prompt) ---
 // In a real app, this would be fetched based on the URL slug
 const articleData = {
-  brandName: 'The Daily Chronicle',
+  brandName: 'Luxury In Taste',
   headline: 'The Unseen Elegance of Minimalist Fashion',
   description: 'Discover how embracing simplicity, clean lines, and a neutral palette can redefine your style and create a timeless, sophisticated wardrobe.',
   imageUrl: 'https://via.placeholder.com/600x800',
