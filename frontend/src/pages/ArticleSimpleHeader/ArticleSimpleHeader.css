@@ -1,0 +1,22 @@
+.article-simple-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--color-border);
+  margin-bottom: 40px;
+}
+.back-button {
+  font-family: var(--font-body);
+  font-size: 16px;
+  color: var(--color-text-light);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.back-button:hover {
+  color: #A78BFA;
+}
+.brand-name {
+  font-family: var(--font-heading-main);
+  font-size: 24px;
+}

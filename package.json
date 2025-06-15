@@ -6,7 +6,9 @@
     "start": "func start",
     "test": "echo \"No tests specified\""
   },
-  "dependencies": {},
+  "dependencies": {
+    "react-router-dom": "^7.6.2"
+  },
   "devDependencies": {
     "@azure/functions": "^3.5.1"
   },
