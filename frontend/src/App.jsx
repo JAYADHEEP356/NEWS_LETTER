@@ -28,7 +28,7 @@
 // This is your FULL, updated App.jsx file
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import './app.css';
+import './index.css';
 
 // Import your page components
 import NewsletterPage from './pages/NewsletterPage/NewsletterPage';
