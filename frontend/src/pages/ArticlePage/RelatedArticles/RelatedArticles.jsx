@@ -13,8 +13,7 @@ const RelatedArticles = ({ articles }) => {
             key={index}
             imageUrl={article.imageUrl}
             text={article.title}
-            // For now, these links can point back to the homepage
-            articleUrl="/"
+            articleUrl={article.articleUrl}
           />
         ))}
       </div>

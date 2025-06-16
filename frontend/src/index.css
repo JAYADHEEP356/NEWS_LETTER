@@ -34,6 +34,7 @@ body {
   z-index: 1;
 }
 
+
 /* === Responsive Adjustments === */
 @media (max-width: 768px) {
   .page-container {
@@ -41,3 +42,4 @@ body {
     padding-top: 73px;
   }
 }
+

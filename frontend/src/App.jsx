@@ -1,38 +1,12 @@
-// import React from 'react';
-// import './app.css'; // Import the global styles
+// src/App.jsx
 
-// // Your existing components
-// import Background from './components/Background/Background';
-// import Navbar from './components/Navbar/Navbar'; // Assuming you have a Navbar
-// import Footer from './components/Footer/Footer';   // Assuming you have a Footer
-
-// import NewsletterPage from './pages/NewsletterPage/NewsletterPage';
-// function App() {
-//   return (
-//     <>
-//       <Background /> {/* Your existing background component */}
-//       <div className="app-content">
-//         <Navbar />
-//         <NewsletterPage />
-//         <Footer />
-//       </div>
-//     </>
-//   );
-// }
-
-
-
-
-// export default App;
-
-// This is your FULL, updated App.jsx file
 import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import './index.css';
 
 // Import your page components
 import NewsletterPage from './pages/NewsletterPage/NewsletterPage';
-import ArticlePage from './pages/ArticlePage/ArticlePage'; // <-- ADD THIS
+import ArticlePage from './pages/ArticlePage/ArticlePage';
 
 // Import your shared layout components
 import Background from './components/Background/Background';
@@ -41,21 +15,20 @@ import Footer from './components/Footer/Footer';
 
 function App() {
   return (
-    <BrowserRouter>
+    <>
       <Background />
-      {/* Remove the main Navbar for a cleaner structure based on our new design */}
-      {/* <Navbar /> */}
-
-      <main>
+      
+      <div className="app-content">
+        
+        {/* The Routes component now directly renders the pages */}
         <Routes>
           <Route path="/" element={<NewsletterPage />} />
-          {/* --- ADD THIS NEW ROUTE --- */}
           <Route path="/article/:slug" element={<ArticlePage />} />
         </Routes>
-      </main>
-
-      <Footer />
-    </BrowserRouter>
+        
+        <Footer />
+      </div>
+    </>
   );
 }
 

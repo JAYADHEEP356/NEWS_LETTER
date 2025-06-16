@@ -1,46 +1,74 @@
-import React from 'react';
-import './Footer.css';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom'; // --- IMPORTANT: Import Link for routing
+import './Footer.css'; // Your existing CSS file
+
+// Import your images so they work after deployment
 import logo from '../../assets/lit-logo.png';
 import emailIcon from '../../assets/email-logo.svg';
 import linkedinIcon from '../../assets/linkedin-logo.svg';
 import instagramIcon from '../../assets/instagram-logo.svg';
 import twitterIcon from '../../assets/twitter-logo.svg';
+import googlePlayIcon from '../../assets/Google play.svg';
+import appStoreIcon from '../../assets/App store.svg';
 
 const Footer = () => {
+  // --- ADDED: State to control the email input ---
+  const [email, setEmail] = useState('');
+
+  // --- ADDED: Function to handle the subscribe button click ---
+  const handleSubscribe = () => {
+    if (!email) {
+      alert('Please enter your email address.');
+      return;
+    }
+    // In a real app, you would send the email to a backend here
+    alert(`Thank you for subscribing with ${email}!`);
+    setEmail(''); // Clear the input after submission
+  };
+
   return (
     <footer className="footer-container">
       <div className="footer-content">
         <div className="footer-main">
-          {/* Logo Section */}
           <div className="footer-logo-section">
-            <img src={logo} alt="LIT Logo" className="footer-logo" />
+            <Link to="/"> {/* Make the logo a link to home */}
+              <img src={logo} alt="LIT Logo" className="footer-logo" />
+            </Link>
           </div>
 
-          {/* Main Navigation */}
+          {/* --- FIX: Changed <a> tags to <Link> for internal navigation --- */}
           <div className="footer-main-nav">
-            <a href="#home">Home</a>
-            <a href="#about">About</a>
-            <a href="#privacy">Privacy Policy</a>
-            <a href="#terms">Terms of Services</a>
-            <a href="#contact">Contact Us</a>
+            <Link to="/">Home</Link>
+            <Link to="/about">About</Link>
+            <Link to="/privacy">Privacy Policy</Link>
+            <Link to="/terms">Terms of Services</Link>
+            <Link to="/contact">Contact Us</Link>
           </div>
         </div>
 
         <div className="footer-secondary">
-          {/* Join Community Section */}
           <div className="footer-join-section">
             <h3>Join our Community</h3>
             <div className="footer-email-container">
+              {/* --- FIX: Made the input a controlled component --- */}
               <input 
-                type="email" 
-                placeholder="Enter Your Email" 
+                type="email"
+                placeholder="Enter Your Email"
                 className="footer-email-input"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                autoComplete="email"
               />
-              <button className="footer-subscribe-btn">Subscribe</button>
+              {/* --- FIX: Added onClick handler --- */}
+              <button 
+                className="footer-subscribe-btn" 
+                onClick={handleSubscribe}
+              >
+                Subscribe
+              </button>
             </div>
           </div>
 
-          {/* Contact Links */}
           <div className="footer-contact-section">
             <div className="footer-contact-item">
               <span>Email</span>
@@ -68,27 +96,34 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* App Store Buttons */}
           <div className="footer-store-buttons">
-            <button className="store-button google-play">
-              <img src="/src/assets/Google play.svg" alt="Get it on Google Play" />
-              
-            </button>
-            <button className="store-button app-store">
-              <img src="/src/assets/App store.svg" alt="Download on the App Store" />
-              
-            </button>
+            {/* --- FIX: Changed buttons to links to prevent CSP errors and make them functional --- */}
+            <a 
+              href="https://play.google.com" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="store-button google-play"
+            >
+              <img src={googlePlayIcon} alt="Get it on Google Play" />
+            </a>
+            <a 
+              href="https://www.apple.com/app-store/" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="store-button app-store"
+            >
+              <img src={appStoreIcon} alt="Download on the App Store" />
+            </a>
           </div>
         </div>
 
-        {/* Footer Bottom */}
         <div className="footer-bottom">
           <div className="footer-divider"></div>
-          <p className="footer-copyright">© 2024 Luxuryintatse. All Rights Reserved.</p>
+          <p className="footer-copyright">© 2024 Luxury In Totes. All Rights Reserved.</p>
         </div>
       </div>
     </footer>
   );
 };
 
-export default Footer; 
+export default Footer;

@@ -1,22 +1,40 @@
+/* --- CSS for Left/Right Header Layout --- */
+
 .article-simple-header {
+  /* Use Flexbox to position the items */
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: space-between; /* This is the key: pushes items to opposite ends */
+  align-items: center; /* This vertically centers them */
+  
+  /* Your original container styles */
+  height: 80px;
   padding: 20px 0;
   border-bottom: 1px solid var(--color-border);
-  margin-bottom: 40px;
+  margin-bottom: 60px;
 }
+
 .back-button {
+  /* No absolute positioning needed anymore */
   font-family: var(--font-body);
   font-size: 16px;
-  color: var(--color-text-light);
-  text-decoration: none;
-  transition: color 0.2s;
+  color: #c0c0c0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  transition: color 0.2s ease;
 }
+
 .back-button:hover {
-  color: #A78BFA;
+  color: #ffffff;
 }
-.brand-name {
-  font-family: var(--font-heading-main);
-  font-size: 24px;
+
+.header-logo-link {
+  display: flex;
+  align-items: center;
+}
+
+.header-logo-img {
+  height: 40px;
+  width: auto;
 }
