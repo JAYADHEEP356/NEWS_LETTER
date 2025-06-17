@@ -2,14 +2,22 @@ import React from 'react';
 import './LuxuryFashion.css';
 import Card from '../../components/shared/Card/Card.jsx';
 
-// --- IMAGE IMPORTS ADDED ---
-import imgCard1 from '../../assets/jay-soundo-L4_eie0ttuM-unsplash.jpg';
-import imgCard2 from '../../assets/luxury-outfit-style - Copy.png';
-import imgCard3 from '../../assets/luxury-fashion.png';
-import imgLarge from '../../assets/photo-1595065666634-4725aa7e8379.jpeg';
-import imgTall from '../../assets/luthfi-ali-qodri-IfMv7JSdT3E-unsplash.jpg';
+// The component is now "dumb" and receives 'posts' as a prop
+const LuxuryFashion = ({ posts }) => { 
+  
+  // Safety check: Don't render if we don't have enough posts for the layout
+  if (!posts || posts.length < 5) {
+    return null; 
+  }
 
-const LuxuryFashion = () => {
+  // Manually assign each post from the array to its specific slot
+  // This assumes the API data for this category is in the correct order
+  const card1Data = posts[0];
+  const card2Data = posts[1];
+  const card3Data = posts[2];
+  const largeCardData = posts[3];
+  const tallCardData = posts[4];
+
   return (
     <section className="lf-section">
       <div className="lf-title-container">
@@ -18,46 +26,62 @@ const LuxuryFashion = () => {
       </div>
 
       <div className="lf-grid-container">
+        
+        {/* Slot 1 */}
         <div className="lf-card-wrapper lf-card-1">
           <Card 
-            imageUrl={imgCard1}
-            description="Timeless elegance in modern architecture and style."
-            publishDate="Nov 10, 2023"
-            articleUrl="/article/luxury-style-1"
+            imageUrl={card1Data.imageUrl}
+            description={card1Data.description}
+            publishDate={card1Data.publishDate}
+            articleUrl={`/article/${card1Data.slug}`}
+            location={card1Data.location}
           />
         </div>
+
+        {/* Slot 2 */}
         <div className="lf-card-wrapper lf-card-2">
           <Card 
-            imageUrl={imgCard2}
-            description="How to pair classic luxury with bold, contemporary pieces."
-            publishDate="Nov 09, 2023"
-            articleUrl="/article/luxury-style-2"
+            imageUrl={card2Data.imageUrl}
+            description={card2Data.description}
+            publishDate={card2Data.publishDate}
+            articleUrl={`/article/${card2Data.slug}`}
+            location={card2Data.location}
           />
         </div>
+
+        {/* Slot 3 */}
         <div className="lf-card-wrapper lf-card-3">
           <Card 
-            imageUrl={imgCard3}
-            description="The essential luxury accessories that define a powerful look."
-            publishDate="Nov 08, 2023"
-            articleUrl="/article/luxury-style-3"
+            imageUrl={card3Data.imageUrl}
+            description={card3Data.description}
+            publishDate={card3Data.publishDate}
+            articleUrl={`/article/${card3Data.slug}`}
+            location={card3Data.location}
           />
         </div>
+
+        {/* Slot 4 (Large) */}
         <div className="lf-card-wrapper lf-card-large">
           <Card 
-            imageUrl={imgLarge}
-            description="Capturing the effortless grace of luxury resort wear."
-            publishDate="Nov 07, 2023"
-            articleUrl="/article/luxury-style-4"
+            imageUrl={largeCardData.imageUrl}
+            description={largeCardData.description}
+            publishDate={largeCardData.publishDate}
+            articleUrl={`/article/${largeCardData.slug}`}
+            location={largeCardData.location}
           />
         </div>
+        
+        {/* Slot 5 (Tall) */}
         <div className="lf-card-wrapper lf-card-tall">
           <Card 
-            imageUrl={imgTall}
-            description="Exploring the intersection of high fashion and street style."
-            publishDate="Nov 06, 2023"
-            articleUrl="/article/luxury-style-5"
+            imageUrl={tallCardData.imageUrl}
+            description={tallCardData.description}
+            publishDate={tallCardData.publishDate}
+            articleUrl={`/article/${tallCardData.slug}`}
+            location={tallCardData.location}
           />
         </div>
+
       </div>
     </section>
   );

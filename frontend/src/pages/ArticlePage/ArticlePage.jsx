@@ -1,54 +1,93 @@
-
-// --- IMAGE IMPORT ADDED ---
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import './ArticlePage.css';
 
-// Import all the components
+// Import all the components for the page
 import ArticleSimpleHeader from './ArticleSimpleHeader/ArticleSimpleHeader';
 import ArticleHero from './ArticleHero/ArticleHero';
 import ArticleBody from './ArticleBody/ArticleBody';
 import ShareButtons from '../../components/ShareButtons/ShareButtons';
 import RelatedArticles from './RelatedArticles/RelatedArticles';
-// import heroArticleImage from '../../assets/sneaker1.jpg';
-import heroArticleImage from '../../assets/red.png';
-
-// --- Static Content ---
-// In a real app, this would be fetched based on the URL slug
-const articleData = {
-  brandName: 'Luxury In Totes', // Corrected brand name
-  headline: 'The Unseen Elegance of Minimalist Fashion',
-  description: 'Discover how embracing simplicity, clean lines, and a neutral palette can redefine your style and create a timeless, sophisticated wardrobe.',
-  imageUrl: heroArticleImage, // You would replace this with an imported image
-  bodyContent: `<p>Minimalism in fashion is more than just an aesthetic; it's a philosophy. It champions the idea of 'less is more', focusing on quality over quantity and functionality over fleeting trends. At its core, it involves curating a wardrobe of high-quality, versatile pieces that can be mixed and matched effortlessly.</p><h2>The Core Principles</h2><p>The first step towards a minimalist wardrobe is a significant declutter. This means letting go of items that no longer serve you, don't fit well, or don't align with the style you aspire to. The goal is to create a collection of clothes that you genuinely love and feel confident wearing.</p><blockquote>"The secret of all victory lies in the organization of the non-obvious."</blockquote><p>Once you have a streamlined collection, the focus shifts to mindful consumption. Instead of impulse buys, every new addition should be a deliberate choice—a piece that complements your existing wardrobe and is built to last. This not only elevates your personal style but also promotes sustainability by reducing waste. For more inspiration, check out this <a href="#" target="_blank" rel="noopener noreferrer">guide to sustainable fabrics</a>.</p>`,
-};
-
-const relatedArticlesData = [
-  { title: 'Autumn Style Guide', imageUrl: 'https://via.placeholder.com/400x300?text=Autumn+Style', articleUrl: "/article/autumn-style" },
-  { title: 'The Rise of Techwear', imageUrl: 'https://via.placeholder.com/400x300?text=Techwear', articleUrl: "/article/techwear-rise" },
-  { title: 'Vintage Finds', imageUrl: 'https://via.placeholder.com/400x300?text=Vintage+Finds', articleUrl: "/article/vintage-finds" },
-];
 
 const ArticlePage = () => {
+  // Get the unique 'slug' from the URL, e.g., "sustainable-fabric-guide"
   const { slug } = useParams();
-  console.log('Displaying article for slug:', slug);
 
+  // State to hold the specific article we find
+  const [article, setArticle] = useState(null);
+  // State for all other articles to show in the "Related" section
+  const [relatedArticles, setRelatedArticles] = useState([]);
+  // State for loading and error messages
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchAndFindArticle = async () => {
+      setLoading(true);
+      setError(null);
+      try {
+        const response = await fetch('https://api.jsonbin.io/v3/b/684ffbd48960c979a5aac082', {
+          headers: {
+            'Content-Type': 'application/json',
+            'X-Access-Key': '$2a$10$yPrdfnGK9qK.GcWAGAq92uuTOQWOXjtCtDznwdBWRRuxNjSgc9wqm'
+          }
+        });
+        if (!response.ok) throw new Error(`API Error: ${response.status}`);
+        
+        const data = await response.json();
+        const allArticles = data.record || [];
+
+        // --- THIS IS THE KEY LOGIC ---
+        // Find the one article where its slug matches the slug from the URL
+        const currentArticle = allArticles.find(p => p.slug === slug);
+
+        if (currentArticle) {
+          setArticle(currentArticle);
+          // Find 3 other articles for the "Related" section, excluding the current one
+          const otherArticles = allArticles.filter(p => p.slug !== slug).slice(0, 3);
+          setRelatedArticles(otherArticles);
+        } else {
+          // If no article with that slug is found, set an error
+          throw new Error("Article not found.");
+        }
+
+      } catch (err) {
+        console.error("Fetch Error:", err);
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchAndFindArticle();
+    // This effect should re-run if the URL slug changes
+  }, [slug]);
+
+  // --- Render loading or error states first ---
+  if (loading) {
+    return <h2 style={{ color: 'white', textAlign: 'center', marginTop: '150px' }}>Loading Article...</h2>;
+  }
+  if (error) {
+    return <h2 style={{ color: 'red', textAlign: 'center', marginTop: '150px' }}>Error: {error}</h2>;
+  }
+
+  // If the article hasn't been found yet for any reason
+  if (!article) {
+    return <h2 style={{ color: 'white', textAlign: 'center', marginTop: '150px' }}>Article could not be loaded.</h2>;
+  }
+
+  // --- Render the dynamic article content ---
   return (
     <div className="article-page-container">
-      {/* <ArticleSimpleHeader brandName={articleData.brandName} /> */}
       <ArticleSimpleHeader />
       <ArticleHero
-        headline={articleData.headline}
-        description={articleData.description}
-        imageUrl={articleData.imageUrl}
+        headline={article.title} // Use the title from the fetched article
+        description={article.description}
+        imageUrl={article.imageUrl}
       />
-      <ArticleBody content={articleData.bodyContent} />
-
-      {/* --- THIS IS THE UPDATED LINE --- */}
-      {/* We are now passing the article's headline as a prop */}
-      <ShareButtons articleTitle={articleData.headline} />
-
-      <RelatedArticles articles={relatedArticlesData} />
+      <ArticleBody content={article.bodyContent || `<p>This article has no content.</p>`} />
+      <ShareButtons articleTitle={article.title} />
+      <RelatedArticles articles={relatedArticles} />
     </div>
   );
 };

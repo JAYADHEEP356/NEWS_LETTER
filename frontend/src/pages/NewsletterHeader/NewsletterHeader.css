@@ -4,9 +4,9 @@
   padding: 20px 0 40px 0; /* Reduced padding for mobile */
 }
 
-.main-title {
+.newsletter-main-title {
   font-family: var(--font-heading-main);
-  font-size: 40px; /* Mobile-friendly font size */
+  font-size: 30px; /* Mobile-friendly font size */
   font-weight: 400;
   margin: 0 0 30px 0;
   letter-spacing: 0.1em;
@@ -58,7 +58,6 @@
   aspect-ratio: 1280 / 683;
 }
 
-
 /*
 ========================================
 --- Tablet View (768px and up) ---
@@ -69,7 +68,7 @@
     padding: 40px 0;
   }
   
-  .main-title {
+  .newsletter-main-title {
     font-size: 48px; /* Slightly larger title */
   }
 
@@ -89,14 +88,13 @@
   }
 }
 
-
 /*
 ========================================
 --- Desktop View (1200px and up) ---
 ========================================
 */
 @media (min-width: 1200px) {
-  .main-title {
+  .newsletter-main-title {
     font-size: 54px; /* Full desktop title size */
   }
 

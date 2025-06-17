@@ -1,16 +1,6 @@
-/* --- Base Styles --- */
-.ff-section {
-  margin-bottom: 120px;
-}
-.ff-title-container {
-  margin-bottom: 60px;
-}
-.ff-title-line1, .ff-title-line2 {
-  font-family: var(--font-body);
-  font-weight: 500;
-  line-height: 0.1;
-  text-transform: uppercase;
-}
+.ff-section { margin-bottom: 120px; }
+.ff-title-container { margin-bottom: 60px; }
+.ff-title-line1, .ff-title-line2 { font-family: var(--font-body); font-weight: 500; line-height: 0.1; text-transform: uppercase; }
 .ff-title-line1 { font-size: 64px; }
 .ff-title-line2 { font-size: 82px; }
 
@@ -19,33 +9,20 @@
   grid-template-columns: repeat(4, 1fr);
   gap: 30px;
 }
-
-/* --- FIX: Target .card-image-container --- */
-/* All cards in this grid are square */
+/* This makes all cards square and fluid */
 .ff-grid .card-image-container {
   aspect-ratio: 1 / 1;
 }
 
-/* --- Responsive Adjustments --- */
 @media (max-width: 992px) {
   .ff-title-line1 { font-size: 54px; }
   .ff-title-line2 { font-size: 72px; }
-  .ff-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
+  .ff-grid { grid-template-columns: repeat(2, 1fr); }
 }
-
 @media (max-width: 768px) {
-  .ff-section {
-    margin-bottom: 80px;
-  }
+  .ff-section { margin-bottom: 80px; }
   .ff-title-line1 { font-size: 44px; }
   .ff-title-line2 { font-size: 60px; }
-  .ff-grid {
-    grid-template-columns: 1fr;
-    justify-items: center; /* Center items on mobile */
-  }
-  .ff-grid .card-wrapper {
-    max-width: 400px; /* Control size on mobile */
-  }
+  .ff-grid { grid-template-columns: 1fr; justify-items: center; }
+  .ff-grid .card-wrapper { max-width: 400px; }
 }

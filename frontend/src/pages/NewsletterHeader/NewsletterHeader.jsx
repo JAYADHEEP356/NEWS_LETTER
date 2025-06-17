@@ -8,7 +8,8 @@ import headerImage from '../../assets/pexels-pixabay-265705.jpg';
 const NewsletterHeader = () => {
   return (
     <div className="newsletter-header-container">
-      <h1 className="main-title">NEWSLETTER</h1>
+      <h1 className="newsletter-main-title">NEWSLETTER</h1>
+
       <div className="button-container">
         <button className="cta-button">Domestic</button>
         <button className="cta-button">International</button>
@@ -17,7 +18,7 @@ const NewsletterHeader = () => {
       <div className="f-image-container">
         <Card 
           imageUrl={headerImage}
-          // Also adding a link for this card to go to a featured article
+          // Also adding a link for this card to g  o to a featured article
           articleUrl="/article/weekly-feature"
           description="Our featured story of the week. Dive into the latest trends."
           publishDate="Nov 15, 2023"

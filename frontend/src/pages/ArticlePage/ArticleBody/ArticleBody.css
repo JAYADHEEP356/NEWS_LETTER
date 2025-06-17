@@ -2,12 +2,19 @@
   max-width: 800px;
   margin: 0 auto;
 }
-.article-body-content p {
+div.article-body-content {
+    font-family: 'Merriweather', serif;
+    font-size: 18px;
+    line-height: 1.8;
+    margin: 0 0 2em 0;
+    color: #E0E0E0; /* A softer white for less eye strain */
+}
+#text {
   font-family: 'Merriweather', serif;
   font-size: 18px;
   line-height: 1.8;
   margin: 0 0 2em 0;
-  color: #E0E0E0; /* A softer white for less eye strain */
+  color: #E0E0E0; 
 }
 .article-body-content h2 {
   font-family: 'Poppins', sans-serif;

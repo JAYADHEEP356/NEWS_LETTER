@@ -10,7 +10,7 @@
   height: auto;
   aspect-ratio: 600 / 800;
   object-fit: cover;
-  border-radius: 8px;
+  /* border-radius: 8px; */
 }
 .hero-headline {
   font-family: 'Poppins', sans-serif;

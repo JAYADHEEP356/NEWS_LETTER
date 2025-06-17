@@ -12,6 +12,8 @@ import ArticlePage from './pages/ArticlePage/ArticlePage';
 import Background from './components/Background/Background';
 import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
+import MainLayout from './components/MainLayout/MainLayout';
+
 
 function App() {
   return (
@@ -20,11 +22,15 @@ function App() {
       
       <div className="app-content">
         
-        {/* The Routes component now directly renders the pages */}
-        <Routes>
-          <Route path="/" element={<NewsletterPage />} />
-          <Route path="/article/:slug" element={<ArticlePage />} />
-        </Routes>
+        <main>
+          <Routes>
+            <Route element={<MainLayout />}>
+            <Route path="/" element={<NewsletterPage />} />
+          </Route>
+            {/* <Route path="/" element={<NewsletterPage />} /> */}
+            <Route path="/article/:slug" element={<ArticlePage />} />
+          </Routes>
+        </main>
         
         <Footer />
       </div>
