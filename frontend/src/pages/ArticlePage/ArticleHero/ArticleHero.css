@@ -74,10 +74,12 @@
   }
   
   .hero-image-wrapper img {
-    aspect-ratio: 16 / 9; /* Wider aspect ratio for mobile */
+    aspect-ratio: 10 / 9; /* Wider aspect ratio for mobile */
     max-width: 600px;
     margin: 0 auto;
     display: block;
+      height: auto;
+
   }
 }
 
@@ -101,6 +103,8 @@
   .hero-image-wrapper img {
     aspect-ratio: 4 / 3;
     border-radius: 6px;
+      height: auto;
+
   }
 }
 
@@ -123,8 +127,10 @@
   }
   
   .hero-image-wrapper img {
-    aspect-ratio: 3 / 2;
+    aspect-ratio: 3 / 3.5;
     border-radius: 4px;
+      height: auto;
+
   }
 }
 

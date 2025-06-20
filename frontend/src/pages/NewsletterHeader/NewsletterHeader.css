@@ -98,7 +98,7 @@ button:hover {
   .hero-button {
     width: 450px;
     height: 48px;
-    width: 80%; /* Controlled width */
+    /* width: 80%; Controlled width */
     max-width: 200px; /* Max cap */
     padding: 8px 16px; /* Even more compact */
     min-width: unset;
@@ -115,10 +115,12 @@ button:hover {
     width: 300px;
     align-items: center;
     gap: 20px;
+    width: 280px;
   }
   .hero-button {
-    width: 80%;
-    max-width: 400px;
+    /* width: 80%; */
+    max-width: 200px;
+    width: 300px;
   }
 }
 
