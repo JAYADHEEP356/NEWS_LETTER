@@ -62,7 +62,7 @@
   border-radius: 16px;
   cursor: pointer;
   transition: all .3s ease;
-  width: 340px;
+  width: 200px;
   height: 52px;
   display: flex;
   justify-content: center;
@@ -112,7 +112,7 @@ button:hover {
 @media (max-width: 480px) {
   .hero-button-group {
     flex-direction: column;
-    width: 100%;
+    width: 300px;
     align-items: center;
     gap: 20px;
   }
