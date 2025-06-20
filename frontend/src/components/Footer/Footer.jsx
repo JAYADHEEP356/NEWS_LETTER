@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom'; // --- IMPORTANT: Import Link for routing
 import './Footer.css'; // Your existing CSS file
+import SubscriptionForm from '../shared/SubscriptionForm';
 
 // Import your images so they work after deployment
 import logo from '../../assets/lit-logo.png';
@@ -49,24 +50,7 @@ const Footer = () => {
         <div className="footer-secondary">
           <div className="footer-join-section">
             <h3>Join our Community</h3>
-            <div className="footer-email-container">
-              {/* --- FIX: Made the input a controlled component --- */}
-              <input 
-                type="email"
-                placeholder="Enter Your Email"
-                className="footer-email-input"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                autoComplete="email"
-              />
-              {/* --- FIX: Added onClick handler --- */}
-              <button 
-                className="footer-subscribe-btn" 
-                onClick={handleSubscribe}
-              >
-                Subscribe
-              </button>
-            </div>
+            <SubscriptionForm inputClassName="footer-email-input" buttonClassName="footer-subscribe-btn" containerClassName="footer-email-container" />
           </div>
 
           <div className="footer-contact-section">

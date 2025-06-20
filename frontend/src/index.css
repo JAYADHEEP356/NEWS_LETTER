@@ -7,6 +7,7 @@
   --color-text-light: #FFFFFF;
   --color-background: #0F001F;
   --color-border: rgba(174, 174, 174, 0.4);
+  --image-opacity: 0.3;
 }
 
 body {
@@ -16,6 +17,9 @@ body {
   font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+html, body{
+  overflow-x: hidden; /* Prevent horizontal scroll */
 }
 
 * {

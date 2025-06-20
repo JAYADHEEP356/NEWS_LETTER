@@ -21,6 +21,7 @@ function App() {
       <Background />
       
       <div className="app-content">
+        <Navbar />
         
         <main>
           <Routes>
@@ -32,7 +33,7 @@ function App() {
           </Routes>
         </main>
         
-        <Footer />
+        {/* <Footer /> */}
       </div>
     </>
   );

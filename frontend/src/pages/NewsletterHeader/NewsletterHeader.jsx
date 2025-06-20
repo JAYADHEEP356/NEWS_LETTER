@@ -1,30 +1,36 @@
 import React from 'react';
 import './NewsletterHeader.css';
-import Card from '../../components/shared/Card/Card.jsx';
+import headerImage from '../../assets/pexels-pixabay-265705.jpg'; // <-- IMPORTANT: Use your actual image path here
 
-// --- IMAGE IMPORT ADDED ---
-import headerImage from '../../assets/pexels-pixabay-265705.jpg';
-
-const NewsletterHeader = () => {
+const NewsletterHeader = ({ activeFilter, onFilterChange }) => {
   return (
-    <div className="newsletter-header-container">
-      <h1 className="newsletter-main-title">NEWSLETTER</h1>
-
-      <div className="button-container">
-        <button className="cta-button">Domestic</button>
-        <button className="cta-button">International</button>
+    <section 
+      className="hero-container" 
+      style={{ backgroundImage: `url(${headerImage})` }}
+    >
+      <div className="hero-overlay"></div>
+      <div className="hero-content" style={{ justifyContent: 'flex-start', paddingTop: '3rem' }}>
+        <h1 className="hero-title">
+          {activeFilter === 'domestic' && (<><span>DOMESTIC</span><br /><span>NEWSLETTER</span></>)}
+          {activeFilter === 'international' && (<><span>INTERNATIONAL</span><br /><span>NEWSLETTER</span></>)}
+          {!activeFilter && 'NEWSLETTER'}
+        </h1>
+        <div className="hero-button-group">
+          <button 
+            className={`hero-button ${activeFilter === 'domestic' ? 'active' : ''}`}
+            onClick={() => onFilterChange('domestic')}
+          >
+            Domestic
+          </button>
+          <button 
+            className={`hero-button ${activeFilter === 'international' ? 'active' : ''}`}
+            onClick={() => onFilterChange('international')}
+          >
+            International
+          </button>
+        </div>
       </div>
-      
-      <div className="f-image-container">
-        <Card 
-          imageUrl={headerImage}
-          // Also adding a link for this card to g  o to a featured article
-          articleUrl="/article/weekly-feature"
-          description="Our featured story of the week. Dive into the latest trends."
-          publishDate="Nov 15, 2023"
-        />
-      </div>
-    </div>
+    </section>
   );
 };
 

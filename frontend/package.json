@@ -21,5 +21,9 @@
   },
   "engines": {
     "node": ">=14"
-  }
+  },
+  "main": "eslint.config.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }

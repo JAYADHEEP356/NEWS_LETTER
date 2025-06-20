@@ -1,44 +1,145 @@
+/* --- Desktop Two-Column Layout --- */
 .article-hero-container {
   display: grid;
-  grid-template-columns: 1fr 1.2fr; /* Give slightly more space to the text */
-  gap: 60px; /* Increased gap */
-  margin-bottom: 80px;
+  grid-template-columns: 1fr 1fr; /* Two equal columns */
+  gap: 60px;
   align-items: center;
+  margin-bottom: 80px;
+  padding-top: 100px; /* Pushes it down from the header */
 }
+
 .hero-image-wrapper img {
   width: 100%;
   height: auto;
-  aspect-ratio: 600 / 800;
+  aspect-ratio: 4 / 5; /* A taller aspect ratio */
   object-fit: cover;
   border-radius: 8px;
 }
+
 .hero-text-wrapper {
-  padding-bottom: 40px; /* Aligns text better with the tall image */
+  /* No special positioning needed */
 }
+
 .hero-headline {
   font-family: 'Poppins', sans-serif;
-  /* --- FIX: REDUCED FONT SIZE --- */
-  font-size: 44px; 
+  font-size: 52px;
   font-weight: 700;
-  line-height: 1.25;
+  line-height: 1.2;
   margin: 0 0 24px 0;
+  color: #fff;
 }
+
 .hero-description {
   font-family: 'Poppins', sans-serif;
   font-size: 18px;
   line-height: 1.7;
   color: #c0c0c0;
   margin: 0;
-  max-width: 600px; /* Keeps the description from getting too wide */
+  max-width: 550px;
 }
 
-/* Responsive adjustments for the hero section */
+/* --- Responsive Adjustments for Tablet & Mobile --- */
+@media (max-width: 1200px) {
+  .article-hero-container {
+    gap: 50px;
+    padding-top: 90px;
+  }
+  
+  .hero-headline {
+    font-size: 52px;
+  }
+  
+  .hero-description {
+    font-size: 17px;
+  }
+}
+
 @media (max-width: 992px) {
   .article-hero-container {
-    grid-template-columns: 1fr; /* Stack on tablet and smaller */
+    grid-template-columns: 1fr; /* Stack into a single column */
     gap: 40px;
+    padding-top: 80px;
+    margin-bottom: 60px;
   }
+  
   .hero-headline {
-    font-size: 36px;
+    font-size: 44px;
+    text-align: center;
+  }
+  
+  .hero-description {
+    font-size: 16px;
+    text-align: center;
+    max-width: 100%;
+  }
+  
+  .hero-image-wrapper img {
+    aspect-ratio: 16 / 9; /* Wider aspect ratio for mobile */
+    max-width: 600px;
+    margin: 0 auto;
+    display: block;
+  }
+}
+
+@media (max-width: 768px) {
+  .article-hero-container {
+    gap: 30px;
+    padding-top: 70px;
+    margin-bottom: 50px;
+  }
+  
+  .hero-headline {
+    font-size: 48px;
+    margin-bottom: 20px;
+  }
+  
+  .hero-description {
+    font-size: 15px;
+    line-height: 1.6;
+  }
+  
+  .hero-image-wrapper img {
+    aspect-ratio: 4 / 3;
+    border-radius: 6px;
+  }
+}
+
+@media (max-width: 480px) {
+  .article-hero-container {
+    gap: 25px;
+    padding-top: 60px;
+    margin-bottom: 40px;
+  }
+  
+  .hero-headline {
+    font-size: 32px;
+    margin-bottom: 16px;
+    line-height: 1.3;
+  }
+  
+  .hero-description {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  
+  .hero-image-wrapper img {
+    aspect-ratio: 3 / 2;
+    border-radius: 4px;
+  }
+}
+
+@media (max-width: 360px) {
+  .article-hero-container {
+    padding-top: 50px;
+    gap: 20px;
+  }
+  
+  .hero-headline {
+    font-size: 24px;
+    margin-bottom: 12px;
+  }
+  
+  .hero-description {
+    font-size: 13px;
   }
 }

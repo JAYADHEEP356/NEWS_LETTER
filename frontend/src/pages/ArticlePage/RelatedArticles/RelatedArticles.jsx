@@ -9,12 +9,13 @@ const RelatedArticles = ({ articles }) => {
       <h2 className="related-title">Related Newsletters</h2>
       <div className="related-grid">
         {articles.map((article, index) => (
-          <Card
-            key={index}
-            imageUrl={article.imageUrl}
-            text={article.title}
-            articleUrl={article.articleUrl}
-          />
+        <Card
+          key={index}
+          imageUrl={article.imageUrl}
+          articleUrl={`/article/${article.slug}`} 
+          text={article.title}
+          // slug={article.slug} // <-- Pass the slug instead
+        />  
         ))}
       </div>
     </section>
