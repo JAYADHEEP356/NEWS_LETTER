@@ -22,10 +22,10 @@ const NewsletterPage = () => {
 
   const onFilterChange = (newFilter) => {
     // First update the back content by setting pendingFilter
-    setPendingFilter(newFilter); 
-    
-    // Then trigger flip animation
+   requestAnimationFrame(() => {
+    setPendingFilter(newFilter);
     handleFlip();
+  });
     
     // After animation completes, make it permanent
     setTimeout(() => {
@@ -58,6 +58,7 @@ const NewsletterPage = () => {
         setLoading(false);
       }
     };
+    
     fetchArticles();
   }, []);
 

@@ -1,8 +1,27 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './NewsletterHeader.css';
-import headerImage from '../../assets/pexels-pixabay-265705.jpg'; // <-- IMPORTANT: Use your actual image path here
+import defaultImage from '../../assets/pexels-pixabay-265705.jpg'; 
+import domesticImage from '../../assets/luthfi-ali-qodri-IfMv7JSdT3E-unsplash.jpg';
+// Use URL method for image with space in filename
+const internationalImage = new URL('../../assets/pretty lady.jpg', import.meta.url).href;
 
 const NewsletterHeader = ({ activeFilter, onFilterChange }) => {
+  const [headerImage, setHeaderImage] = useState(defaultImage);
+
+  useEffect(() => {
+    switch (activeFilter) {
+      case 'domestic':
+        setHeaderImage(domesticImage);
+        break;
+      case 'international':
+        setHeaderImage(internationalImage);
+        break;
+      default:
+        setHeaderImage(defaultImage);
+        break;
+    }
+  }, [activeFilter]);
+
   return (
     <section 
       className="hero-container" 

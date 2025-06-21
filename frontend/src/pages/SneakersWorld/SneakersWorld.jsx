@@ -10,7 +10,7 @@ const SneakersWorld = ({ posts }) => {
   return (
     <section className="sw-section">
       <div className="sw-title-container">
-        <h2 className="sw-title-line1">SNEAKERS</h2>
+        <h2 className="sw-title-line1">SNEAKER</h2>
         <h2 className="sw-title-line2">WORLD</h2>
       </div>
       <div className="sw-grid-container">

@@ -8,6 +8,7 @@ import ArticleHero from './ArticleHero/ArticleHero';
 import ArticleBody from './ArticleBody/ArticleBody';
 import ShareButtons from '../../components/ShareButtons/ShareButtons';
 import RelatedArticles from './RelatedArticles/RelatedArticles';
+import Footer from '../../components/Footer/Footer';
 
 const ArticlePage = () => {
   const { slug } = useParams();
@@ -75,7 +76,10 @@ const ArticlePage = () => {
         <ArticleBody content={article.bodyContent || `<p>No content available.</p>`} />
         <ShareButtons articleTitle={article.title} />
         <RelatedArticles articles={relatedArticles} />
+
       </div>
+              <Footer />
+
     </div>
   );
 };
