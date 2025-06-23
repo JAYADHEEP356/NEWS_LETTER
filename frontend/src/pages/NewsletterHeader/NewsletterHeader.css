@@ -111,121 +111,65 @@ button:hover {
 .hero-button.active:before {
   background: linear-gradient(45deg, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.3));
 }
-
 /* --- Responsive Styles --- */
 @media (max-width: 768px) {
   .hero-container {
-    height: 100vh; /* Full screen height on mobile */
-    height: 100dvh; /* Dynamic viewport height for mobile browsers */
-    max-height: none; /* Remove max-height constraint on mobile */
-    background-position: center; /* Center image for mobile */
-    background-size: cover; /* Ensure image covers the full container */
+    height: auto; /* Let content determine height */
+    min-height: 50vh; /* Adjust this value as needed */
+    max-height: none;
+    background-position: center 30%; /* Keep your original positioning */
+    background-size: cover;
   }
   .hero-content {
-    justify-content: center; /* Center content vertically */
-    align-items: center; /* Center content horizontally */
-    padding-top: 0; /* Remove top padding */
-    height: 100%; /* Take full height */
+    justify-content: flex-start; /* Align content to top */
+    padding-top: 20px;
+    height: auto;
+    gap: 20px; /* Reduced from 40px */
   }
   .hero-title {
-    font-size: 48px;
-    padding-top: 200px;
-    text-align: center; /* Ensure text is centered */
-  }
-  .hero-button {
-    width: 450px;
-    height: 48px;
-    /* width: 80%; Controlled width */
-    max-width: 200px; /* Max cap */
-    padding: 8px 16px; /* Even more compact */
-    min-width: unset;
+    font-size: 42px; /* Slightly smaller than desktop */
+    padding-top: 40px; /* Reduced from 100px */
   }
   .hero-button-group {
-    flex-direction: column; /* Stack vertically */
-    align-items: center;
-    gap: 20px;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+  }
+  .hero-button {
+    width: 80%;
+    max-width: 280px;
+    height: 48px;
+    margin: 0 auto; /* Center buttons */
   }
 }
 
 /* Extra small devices (phones, 480px and down) */
 @media (max-width: 480px) {
   .hero-container {
-    height: 100vh;
-    height: 100dvh;
-    background-position: center;
-    background-size: cover;
-  }
-  .hero-content {
-    justify-content: center;
-    align-items: center;
-    padding-top: 0;
-    height: 100%;
+    min-height: 40vh; /* Smaller height */
   }
   .hero-title {
     font-size: 36px;
-    padding-top: 150px;
-    text-align: center;
-  }
-  .hero-button-group {
-    flex-direction: column;
-    width: 300px;
-    align-items: center;
-    gap: 20px;
-    width: 280px;
-  }
-  .hero-button {
-    /* width: 80%; */
-    max-width: 200px;
-    width: 300px;
-  }
+    padding-top:60px
 }
 
 /* Very small devices (small phones, 360px and down) */
 @media (max-width: 360px) {
   .hero-container {
-    height: 100vh;
-    height: 100dvh;
-  }
-  .hero-content {
-    justify-content: center;
-    align-items: center;
-    padding-top: 0;
-    height: 100%;
+    min-height: 35vh; /* Even smaller height */
   }
   .hero-title {
     font-size: 32px;
-    padding-top: 120px;
-    text-align: center;
+    padding-top: 65px;
   }
 }
 
-/* Handle mobile browsers with dynamic viewport */
-@media (max-width: 768px) and (orientation: portrait) {
-  .hero-container {
-    height: 100vh;
-    height: 100dvh;
-    min-height: 100vh;
-        padding-top: 100px;
-
-    
-  }
-}
-
+/* Remove orientation-specific full-height rules */
+@media (max-width: 768px) and (orientation: portrait) ,
 @media (max-width: 768px) and (orientation: landscape) {
   .hero-container {
-    height: 100vh;
-    height: 100dvh;
-    min-height: 100vh;
+    height: auto;
+    min-height: 50vh; /* Consistent with main mobile rule */
+    padding-top: 0;
   }
-}
-
-.page-flip-container {
-  perspective: 1200px;
-}
-.page-flip {
-  transition: transform 0.6s cubic-bezier(0.4,0.2,0.2,1);
-  transform-style: preserve-3d;
-}
-.page-flip.flipping {
-  transform: rotateY(180deg);
 }

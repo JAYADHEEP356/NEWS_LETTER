@@ -9,6 +9,7 @@ const Background = ({ children }) => {
         className="background-image" 
         style={{ backgroundImage: `url(${landingPageBg})` }}
       />
+      <div className="background-overlay"></div>
       <div className="background-content">
         {children}
       </div>
