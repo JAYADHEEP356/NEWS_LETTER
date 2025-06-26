@@ -1,3 +1,4 @@
+// backend/controllers/articleController.js
 const Article = require('../models/Articles');
 
 // GET all articles
@@ -32,7 +33,7 @@ const getArticleBySlug = async (req, res) => {
   }
 };
 
-// GET articles by category (case-insensitive)
+// GET articles by category
 const getArticlesByCategory = async (req, res) => {
   try {
     const regex = new RegExp(`^${req.params.category}$`, 'i');
@@ -46,7 +47,7 @@ const getArticlesByCategory = async (req, res) => {
   }
 };
 
-// GET articles by location (case-insensitive)
+// GET articles by location
 const getArticlesByLocation = async (req, res) => {
   try {
     const regex = new RegExp(`^${req.params.location}$`, 'i');
@@ -60,16 +61,12 @@ const getArticlesByLocation = async (req, res) => {
   }
 };
 
-// GET articles by category AND location (case-insensitive)
+// GET articles by category & location
 const getArticlesByCategoryAndLocation = async (req, res) => {
   try {
     const categoryRegex = new RegExp(`^${req.params.category}$`, 'i');
     const locationRegex = new RegExp(`^${req.params.location}$`, 'i');
-
-    const articles = await Article.find({
-      category: categoryRegex,
-      location: locationRegex
-    }).sort({ publishDate: -1 });
+    const articles = await Article.find({ category: categoryRegex, location: locationRegex }).sort({ publishDate: -1 });
 
     if (!articles.length) {
       return res.status(404).json({ message: 'No articles found matching both category and location' });
@@ -108,14 +105,25 @@ const updateArticleBySlug = async (req, res) => {
       req.body,
       { new: true, runValidators: true }
     );
-
     if (!updated) {
       return res.status(404).json({ message: 'Article not found to update' });
     }
-
     res.json({ message: 'Article updated successfully', article: updated });
   } catch (err) {
     res.status(400).json({ error: err.message || 'Error updating article' });
+  }
+};
+
+// ✅ DELETE article by slug
+const deleteArticleBySlug = async (req, res) => {
+  try {
+    const deleted = await Article.findOneAndDelete({ slug: req.params.slug });
+    if (!deleted) {
+      return res.status(404).json({ message: 'Article not found to delete' });
+    }
+    res.json({ message: 'Article deleted successfully', article: deleted });
+  } catch (err) {
+    res.status(500).json({ error: err.message || 'Error deleting article' });
   }
 };
 
@@ -127,5 +135,6 @@ module.exports = {
   getArticlesByLocation,
   getArticlesByCategoryAndLocation,
   createArticle,
-  updateArticleBySlug
+  updateArticleBySlug,
+  deleteArticleBySlug
 };

@@ -8,7 +8,8 @@ const {
   getArticlesByLocation,
   getArticlesByCategoryAndLocation,
   createArticle,
-  updateArticleBySlug
+  updateArticleBySlug,
+  deleteArticleBySlug  // ✅ DELETE controller added here
 } = require('../controllers/articleController');
 
 // CREATE
@@ -17,16 +18,19 @@ router.post('/', createArticle);
 // UPDATE
 router.put('/slug/:slug', updateArticleBySlug);
 
-// GET by ID or slug
+// DELETE
+router.delete('/slug/:slug', deleteArticleBySlug); // ✅ DELETE route added
+
+// GET by ID or Slug
 router.get('/id/:id', getArticleById);
 router.get('/slug/:slug', getArticleBySlug);
 
-// ✅ ORDER MATTERS: place the specific route first
+// Category & Location-specific fetches (⚠️ order matters)
 router.get('/category/:category/location/:location', getArticlesByCategoryAndLocation);
 router.get('/category/:category', getArticlesByCategory);
 router.get('/location/:location', getArticlesByLocation);
 
-// All articles
+// GET All
 router.get('/', getAllArticles);
 
 module.exports = router;
