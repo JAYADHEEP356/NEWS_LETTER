@@ -41,7 +41,7 @@ function App() {
             <Route path="/admin/mail" element={<ContentManager section="mail" />} />
 
             {/* Mail Section Specific Routes */}
-            <Route path="/admin/mail/add" element={<MailAdderPage />} />
+            <Route path="/admin/mail/add" element={<MailAdderPage />}/>
             <Route path="/admin/mail/edit/:id" element={<MailItemEditor />} />
 
             {/* Website Section Specific Routes */}

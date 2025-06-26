@@ -29,17 +29,32 @@ const ArticleEditor = () => {
   });
 
   useEffect(() => {
-    if (isEditing) {
-      const data = getArticleBySlug(slug);
-      if (data) {
-        setArticleData(data);
-      } else {
-        showNotification('Article not found.');
-        navigate('/admin/dashboard');
+    const fetchArticle = async () => {
+      if (!isEditing) {
+        setIsLoading(false);
+        return;
       }
-    }
-    setIsLoading(false);
-  }, [slug, isEditing, getArticleBySlug, navigate, showNotification]);
+
+      let data = getArticleBySlug(slug);
+
+      if (!data) {
+        try {
+          const res = await fetch(`${BASE_URL}/api/articles/slug/${slug}`);
+          if (!res.ok) throw new Error('Article not found');
+          data = await res.json();
+        } catch (err) {
+          showNotification(err.message || 'Failed to load article.');
+          navigate('/admin/dashboard');
+          return;
+        }
+      }
+
+      setArticleData(data);
+      setIsLoading(false);
+    };
+
+    fetchArticle();
+  }, [isEditing, slug, getArticleBySlug, navigate, showNotification]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -53,7 +68,11 @@ const ArticleEditor = () => {
       title: newTitle,
       slug: isEditing
         ? prev.slug
-        : newTitle.toLowerCase().trim().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, ''),
+        : newTitle
+            .toLowerCase()
+            .trim()
+            .replace(/\s+/g, '-')
+            .replace(/[^a-z0-9-]/g, ''),
     }));
   };
 
@@ -106,14 +125,6 @@ const ArticleEditor = () => {
     handleSave('Published');
   };
 
-  if (isLoading) {
-    return (
-      <div className="editor-container">
-        <h1>Loading Editor...</h1>
-      </div>
-    );
-  }
-
   const quillModules = {
     toolbar: [
       [{ header: [1, 2, false] }],
@@ -123,6 +134,14 @@ const ArticleEditor = () => {
       ['clean'],
     ],
   };
+
+  if (isLoading) {
+    return (
+      <div className="editor-container">
+        <h1>Loading Editor...</h1>
+      </div>
+    );
+  }
 
   return (
     <div className="editor-container">
@@ -215,6 +234,7 @@ const ArticleEditor = () => {
               />
             </div>
           </div>
+
           <aside className="editor-sidebar">
             <div className="sidebar-card">
               <h3>Details & SEO</h3>

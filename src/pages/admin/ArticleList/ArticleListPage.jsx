@@ -15,6 +15,7 @@ const ArticleListPage = () => {
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [toast, setToast] = useState('');
 
   const fetchArticles = async () => {
     try {
@@ -22,8 +23,6 @@ const ArticleListPage = () => {
       setError(null);
 
       let endpoint = '';
-
-      // Capitalize the first letter of 'type' to match stored DB values (e.g., "Domestic")
       const normalizedLocation = type.charAt(0).toUpperCase() + type.slice(1);
 
       if (section === 'mail') {
@@ -49,8 +48,8 @@ const ArticleListPage = () => {
   }, [section, type, category]);
 
   const handleDelete = async (slug, title) => {
-    const confirm = window.confirm(`Are you sure you want to delete "${title}"?`);
-    if (!confirm) return;
+    const confirmDelete = window.confirm(`Are you sure you want to delete "${title}"?`);
+    if (!confirmDelete) return;
 
     try {
       const res = await fetch(`http://localhost:5000/api/articles/slug/${slug}`, {
@@ -60,9 +59,15 @@ const ArticleListPage = () => {
       if (!res.ok) throw new Error('Failed to delete article');
 
       setArticles(prev => prev.filter(article => article.slug !== slug));
+      showToast(`✅ "${title}" deleted successfully`);
     } catch (err) {
-      alert(err.message);
+      showToast(`❌ ${err.message}`);
     }
+  };
+
+  const showToast = (message) => {
+    setToast(message);
+    setTimeout(() => setToast(''), 3000);
   };
 
   const basePath = `/admin/articles/${section}/${type}/${category}`;
@@ -76,6 +81,8 @@ const ArticleListPage = () => {
           <FaPlus /> Create New Article
         </Link>
       </header>
+
+      {toast && <div className="toast-message">{toast}</div>}
 
       <div className="list-table-container">
         {loading ? (

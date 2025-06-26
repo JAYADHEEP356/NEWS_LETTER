@@ -24,26 +24,62 @@ const MailContentManager = () => {
         return ['All', ...new Set(categoryNames)];
     }, [newsletterContent]);
 
+    useEffect(() => {
+        const fetchAll = async () => {
+            try {
+                const urls = {
+                    'fast-fashion': 'http://localhost:5000/api/fast-fashion',
+                    'luxury-fashion': 'http://localhost:5000/api/luxury-fashion',
+                    'sustainable-fashion': 'http://localhost:5000/api/sustainable-fashion',
+                    'sneaker-world': 'http://localhost:5000/api/sneaker-world'
+                };
+
+                const responses = await Promise.all(
+                    Object.entries(urls).map(async ([key, url]) => {
+                        const res = await fetch(url);
+                        const data = await res.json();
+                        return { key, items: data };
+                    })
+                );
+
+                const categories = {};
+                for (const { key, items } of responses) {
+                    categories[key] = items.map(item => ({
+                        ...item,
+                        categoryId: key,
+                        categoryName: key.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())
+                    }));
+                }
+
+                updateNewsletterContent({ categories });
+            } catch (err) {
+                console.error('Failed to fetch mail content:', err);
+            }
+        };
+
+        fetchAll();
+    }, []);
+
     const flattenedItems = useMemo(() => {
         if (!newsletterContent || !newsletterContent.categories) return [];
         const allItems = Object.entries(newsletterContent.categories).flatMap(([categoryId, items]) =>
             items.map(item => ({
                 ...item,
-                categoryId: categoryId,
-                categoryName: categoryId.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())
+                categoryId,
+                categoryName: item.categoryName
             }))
         );
         if (categoryFilter === 'All') return allItems;
         return allItems.filter(item => item.categoryName === categoryFilter);
     }, [newsletterContent, categoryFilter]);
 
-    const handleView = (item) => navigate(`/article/${item.id}`);
-    const handleEdit = (item) => navigate(`/admin/mail/edit/${item.id}`);
+    const handleView = (item) => navigate(`/article/${item._id}`);
+    const handleEdit = (item) => navigate(`/admin/mail/edit/${item._id}`);
     const handleDelete = (itemToDelete) => {
-        showConfirmation(`Delete "${itemToDelete.caption}" permanently?`, () => {
+        showConfirmation(`Delete "${itemToDelete.caption || itemToDelete.data}" permanently?`, async () => {
             const updatedContent = JSON.parse(JSON.stringify(newsletterContent));
-            const categoryItems = updatedContent.categories[itemToDelete.categoryId].filter(item => item.id !== itemToDelete.id);
-            updatedContent.categories[itemToDelete.categoryId] = categoryItems;
+            const filtered = updatedContent.categories[itemToDelete.categoryId].filter(i => i._id !== itemToDelete._id);
+            updatedContent.categories[itemToDelete.categoryId] = filtered;
             updateNewsletterContent(updatedContent);
             showNotification("Item deleted successfully.");
         });
@@ -61,7 +97,13 @@ const MailContentManager = () => {
                     <div className="radio-toggle">
                         {ALL_MAIL_CATEGORIES.map(cat => (
                             <label key={cat} className={categoryFilter === cat ? 'active' : ''}>
-                                <input type="radio" name="mailCategoryFilter" value={cat} checked={categoryFilter === cat} onChange={(e) => setCategoryFilter(e.target.value)} />
+                                <input
+                                    type="radio"
+                                    name="mailCategoryFilter"
+                                    value={cat}
+                                    checked={categoryFilter === cat}
+                                    onChange={(e) => setCategoryFilter(e.target.value)}
+                                />
                                 <span>{cat}</span>
                             </label>
                         ))}
@@ -72,12 +114,12 @@ const MailContentManager = () => {
                 {flattenedItems.length > 0 ? (
                     <table className="content-table">
                         <thead>
-                            <tr><th>Caption / Headline</th><th>Category</th><th style={{ textAlign: 'right' }}>Actions</th></tr>
+                            <tr><th>Caption / Data</th><th>Category</th><th style={{ textAlign: 'right' }}>Actions</th></tr>
                         </thead>
                         <tbody>
                             {flattenedItems.map((item) => (
-                                <tr key={item.id}>
-                                    <td className="title-cell">{item.caption || '(No Caption)'}</td>
+                                <tr key={item._id}>
+                                    <td className="title-cell">{item.caption || item.data || '(No Caption)'}</td>
                                     <td>{item.categoryName}</td>
                                     <td className="action-cell">
                                         <button onClick={() => handleView(item)} className="action-icon view" title="View"><FaEye /></button>
@@ -97,7 +139,7 @@ const MailContentManager = () => {
             </div>
         </div>
     );
-};
+}
 
 const WebsiteArticleList = () => {
     const navigate = useNavigate();
